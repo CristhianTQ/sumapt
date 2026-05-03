@@ -56,9 +56,4 @@ public class PerfilMentor
         CreadoEn = DateTimeOffset.UtcNow;
     }
 
-    /// <summary>Pausa temporalmente la visibilidad del mentor.</summary>
-    public void PausarDisponibilidad() => Activo = false;
-    
-    /// <summary>Reactiva la visibilidad del mentor.</summary>
-    public void ActivarDisponibilidad() => Activo = true;
 }
