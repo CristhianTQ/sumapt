@@ -1,0 +1,13 @@
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Domain/bin/Debug/net10.0/SUMAPT.Domain.deps.json
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Domain/bin/Debug/net10.0/SUMAPT.Domain.dll
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Domain/bin/Debug/net10.0/SUMAPT.Domain.pdb
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Domain/bin/Debug/net10.0/SUMAPT.Domain.xml
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Domain/obj/Debug/net10.0/SUMAPT.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Domain/obj/Debug/net10.0/SUMAPT.Domain.AssemblyInfoInputs.cache
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Domain/obj/Debug/net10.0/SUMAPT.Domain.AssemblyInfo.cs
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Domain/obj/Debug/net10.0/SUMAPT.Domain.csproj.CoreCompileInputs.cache
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Domain/obj/Debug/net10.0/SUMAPT.Domain.dll
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Domain/obj/Debug/net10.0/refint/SUMAPT.Domain.dll
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Domain/obj/Debug/net10.0/SUMAPT.Domain.xml
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Domain/obj/Debug/net10.0/SUMAPT.Domain.pdb
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Domain/obj/Debug/net10.0/ref/SUMAPT.Domain.dll

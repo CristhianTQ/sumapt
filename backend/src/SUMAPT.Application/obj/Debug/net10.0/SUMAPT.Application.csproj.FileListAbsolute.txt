@@ -1,0 +1,16 @@
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/bin/Debug/net10.0/SUMAPT.Application.deps.json
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/bin/Debug/net10.0/SUMAPT.Application.dll
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/bin/Debug/net10.0/SUMAPT.Application.pdb
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/bin/Debug/net10.0/SUMAPT.Domain.dll
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/bin/Debug/net10.0/SUMAPT.Domain.pdb
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/bin/Debug/net10.0/SUMAPT.Domain.xml
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/obj/Debug/net10.0/SUMAPT.Application.csproj.AssemblyReference.cache
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/obj/Debug/net10.0/SUMAPT.Application.GeneratedMSBuildEditorConfig.editorconfig
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/obj/Debug/net10.0/SUMAPT.Application.AssemblyInfoInputs.cache
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/obj/Debug/net10.0/SUMAPT.Application.AssemblyInfo.cs
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/obj/Debug/net10.0/SUMAPT.Application.csproj.CoreCompileInputs.cache
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/obj/Debug/net10.0/SUMAPT.A.B85A254C.Up2Date
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/obj/Debug/net10.0/SUMAPT.Application.dll
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/obj/Debug/net10.0/refint/SUMAPT.Application.dll
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/obj/Debug/net10.0/SUMAPT.Application.pdb
+/mnt/e/proyectos/suma-pt-gem/backend/src/SUMAPT.Application/obj/Debug/net10.0/ref/SUMAPT.Application.dll

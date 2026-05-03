@@ -1,0 +1,1054 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SUMAPT.Domain</name>
+    </assembly>
+    <members>
+        <member name="T:SUMAPT.Domain.Entities.Academico.HistorialNota">
+            <summary>
+            Representa el registro de calificaciones de un estudiante en una materia específica.
+            Alimenta directamente al modelo de predicción de riesgo.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.HistorialNota.Id">
+            <summary>Identificador único del registro de nota.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.HistorialNota.InscripcionId">
+            <summary>ID de la inscripción del estudiante.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.HistorialNota.MateriaId">
+            <summary>ID de la materia cursada.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.HistorialNota.PeriodoId">
+            <summary>ID del periodo en el que se cursó.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.HistorialNota.NotaFinal">
+            <summary>Calificación final obtenida (0 a 100).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.HistorialNota.EstadoCurso">
+            <summary>Estado académico: EN_CURSO, APROBADO, REPROBADO, ABANDONO.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.HistorialNota.Intentos">
+            <summary>Número de vez que el estudiante cursa esta materia.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.HistorialNota.RegistradoEn">
+            <summary>Fecha exacta del registro de la calificación.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.HistorialNota.RegistradoPor">
+            <summary>ID del usuario (Docente o Admin) que subió la nota.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.HistorialNota.Inscripcion">
+            <summary>Referencia a la inscripción base del estudiante.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.HistorialNota.Materia">
+            <summary>Referencia a la materia cursada.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.HistorialNota.Periodo">
+            <summary>Referencia al periodo académico evaluado.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.HistorialNota.Auditor">
+            <summary>Referencia al usuario con privilegios que registró o auditó la nota.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.HistorialNota.#ctor">
+            <summary>Constructor vacío para EF Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.HistorialNota.#ctor(System.Guid,System.Guid,System.Guid,System.Nullable{System.Decimal},System.Int16,System.Nullable{System.Guid})">
+            <summary>
+            Crea un nuevo registro de nota evaluando automáticamente el estado de aprobación.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.HistorialNota.ActualizarNota(System.Decimal,System.Guid)">
+            <summary>
+            Actualiza la calificación y recalcula el estado.
+            </summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Academico.Inscripcion">
+            <summary>
+            Representa la matrícula de un estudiante en un programa durante un periodo específico.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Inscripcion.Id">
+            <summary>Identificador único de la inscripción.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Inscripcion.EstudianteId">
+            <summary>ID del usuario (estudiante) inscrito.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Inscripcion.ProgramaId">
+            <summary>ID del programa o carrera al que se inscribe.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Inscripcion.PeriodoId">
+            <summary>ID del periodo académico (ej. Semestre I-2026).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Inscripcion.Estado">
+            <summary>Estado actual de la inscripción (ej. ACTIVO, SUSPENDIDO, RETIRADO).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Inscripcion.CreadoEn">
+            <summary>Fecha y hora en que se registró la inscripción.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Inscripcion.Estudiante">
+            <summary>Referencia hacia el Estudiante.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Inscripcion.Programa">
+            <summary>Referencia hacia el Programa.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Inscripcion.Periodo">
+            <summary>Referencia hacia el Periodo.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Inscripcion.#ctor">
+            <summary>Constructor requerido por EF Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Inscripcion.#ctor(System.Guid,System.Guid,System.Guid)">
+            <summary>
+            Genera una nueva inscripción en estado ACTIVO por defecto.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Inscripcion.CambiarEstado(System.String)">
+            <summary>
+            Modifica el estado de la matrícula mediante una regla de negocio.
+            </summary>
+            <param name="nuevoEstado">El nuevo estado (Ej. RETIRADO).</param>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Academico.Institucion">
+            <summary>
+            Representa una entidad educativa (Universidad, Instituto, Colegio) que utiliza la plataforma.
+            Base del sistema Multi-Tenant.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Institucion.Id">
+            <summary>Identificador único de la institución.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Institucion.Nombre">
+            <summary>Nombre completo y oficial.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Institucion.NombreCorto">
+            <summary>Acrónimo o nombre corto único (Ej. UMSA, UPDS).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Institucion.LogoUrl">
+            <summary>URL del logotipo oficial.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Institucion.DominioEmail">
+            <summary>Dominio de correo institucional para validaciones (Ej. umsa.bo).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Institucion.Pais">
+            <summary>País de origen de la institución.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Institucion.ZonaHoraria">
+            <summary>Zona horaria por defecto para la programación de citas y periodos.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Institucion.Activa">
+            <summary>Estado de operación en la plataforma.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Institucion.CreadoEn">
+            <summary>Fecha de registro de la institución.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Institucion.#ctor">
+            <summary>Constructor vacío para Entity Framework Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Institucion.#ctor(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructor de Dominio. Blinda la creación exigiendo los campos mínimos vitales.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Institucion.Desactivar">
+            <summary>Inactiva a la institución y todos sus accesos vinculados.</summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Academico.Materia">
+            <summary>
+            Representa una asignatura, curso o materia que forma parte de un Programa Académico.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Materia.Id">
+            <summary>Identificador único de la materia.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Materia.ProgramaId">
+            <summary>Llave foránea hacia la carrera o programa al que pertenece.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Materia.Nombre">
+            <summary>Nombre oficial de la asignatura.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Materia.Codigo">
+            <summary>Código o sigla oficial de la materia (Ej. SIS-100).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Materia.Creditos">
+            <summary>Valor académico en créditos.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Materia.PeriodoSugerido">
+            <summary>Semestre, año o ciclo en el que se sugiere cursar (Opcional).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Materia.Activa">
+            <summary>Indica si la materia sigue activa en la malla curricular actual.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Materia.CreadoEn">
+            <summary>Fecha de creación del registro.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Materia.Programa">
+            <summary>Propiedad de navegación para Entity Framework Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Materia.#ctor">
+            <summary>Constructor vacío requerido por el ORM.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Materia.#ctor(System.Guid,System.String,System.String,System.Int16,System.Nullable{System.Int16})">
+            <summary>
+            Constructor de Dominio para inicializar una materia en un estado válido.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Materia.Desactivar">
+            <summary>Marca la materia como inactiva (baja lógica).</summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Academico.ModeloAcademico">
+            <summary>
+            Define la estructura de tiempo de un programa de estudios (Semestral, Anual, Modular).
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.ModeloAcademico.Id">
+            <summary>Identificador único del modelo.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.ModeloAcademico.InstitucionId">
+            <summary>Llave foránea hacia la Institución dueña de este modelo.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.ModeloAcademico.Nombre">
+            <summary>Nombre descriptivo (Ej. Modelo Semestral Estándar).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.ModeloAcademico.Tipo">
+            <summary>Clasificación técnica del tipo de modelo (Ej. SEMESTRAL, MODULAR).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.ModeloAcademico.PeriodosPorAño">
+            <summary>Cantidad de ciclos que ocurren en un año calendario.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.ModeloAcademico.Activo">
+            <summary>Indica si el modelo está disponible para crear nuevos programas.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.ModeloAcademico.CreadoEn">
+            <summary>Fecha de registro original.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.ModeloAcademico.Institucion">
+            <summary>Propiedad de navegación para EF Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.ModeloAcademico.#ctor">
+            <summary>Constructor vacío requerido por el ORM.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.ModeloAcademico.#ctor(System.Guid,System.String,System.String,System.Int32)">
+            <summary>
+            Constructor de Dominio. Valida la lógica interna al momento de instanciar.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.ModeloAcademico.Desactivar">
+            <summary>Deshabilita el modelo académico.</summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Academico.Periodo">
+            <summary>
+            Representa un lapso de tiempo académico (Ej. Semestre I-2026, Gestión Anual 2026).
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Periodo.Id">
+            <summary>Identificador único del periodo.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Periodo.InstitucionId">
+            <summary>Llave foránea hacia la Institución a la que pertenece.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Periodo.Nombre">
+            <summary>Nombre descriptivo del periodo.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Periodo.FechaInicio">
+            <summary>Fecha oficial de inicio de clases.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Periodo.FechaFin">
+            <summary>Fecha oficial de finalización de clases.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Periodo.Activo">
+            <summary>Indica si el periodo está habilitado para operaciones.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Periodo.CreadoEn">
+            <summary>Fecha de creación del registro.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Periodo.Institucion">
+            <summary>Propiedad de navegación para Entity Framework.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Periodo.#ctor">
+            <summary>Constructor vacío requerido por el ORM.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Periodo.#ctor(System.Guid,System.String,System.DateOnly,System.DateOnly)">
+            <summary>
+            Construye un periodo garantizando su integridad desde la creación.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Periodo.Desactivar">
+            <summary>Desactiva el periodo académicamente.</summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Academico.Programa">
+            <summary>
+            Representa una carrera o programa de estudios (Ej. Ingeniería de Sistemas).
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Programa.Id">
+            <summary>Identificador único del programa.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Programa.InstitucionId">
+            <summary>ID de la Institución a la que pertenece.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Programa.ModeloId">
+            <summary>ID del modelo académico que rige su estructura temporal.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Programa.Nombre">
+            <summary>Nombre oficial de la carrera o programa.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Programa.Codigo">
+            <summary>Código interno o sigla (Ej. SIS-100, INF).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Programa.DuracionPeriodos">
+            <summary>Duración total expresada en la cantidad de periodos (Ej. 10 semestres).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Programa.Activo">
+            <summary>Indica si el programa está habilitado para recibir inscripciones.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Programa.CreadoEn">
+            <summary>Fecha de registro original.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Programa.Institucion">
+            <summary>Propiedad de navegación hacia la Institución.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Academico.Programa.ModeloAcademico">
+            <summary>Propiedad de navegación hacia el Modelo Académico.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Programa.#ctor">
+            <summary>Constructor vacío para Entity Framework Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Programa.#ctor(System.Guid,System.Guid,System.String,System.String,System.Int32)">
+            <summary>
+            Constructor de Dominio para garantizar un estado válido inicial.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Academico.Programa.Desactivar">
+            <summary>Da de baja el programa de forma lógica.</summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Analitica.EventoTelemetria">
+            <summary>
+            Representa un evento de rastreo (telemetría) para el análisis de comportamiento.
+            Es la fuente principal de alimentación para los modelos de Inteligencia Artificial.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.EventoTelemetria.Id">
+            <summary>Identificador secuencial del evento (BIGSERIAL en BD).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.EventoTelemetria.UsuarioId">
+            <summary>ID del usuario que generó el evento de interacción.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.EventoTelemetria.SesionId">
+            <summary>Opcional: ID de la sesión web activa para trazabilidad de la jornada.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.EventoTelemetria.TipoEvento">
+            <summary>Clasificación estructurada de la acción (Ej. DESCARGA_MATERIAL, LOGIN_EXITOSO).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.EventoTelemetria.EntidadTipo">
+            <summary>Opcional: Entidad o módulo con el que interactuó (Ej. MATERIA, FORO).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.EventoTelemetria.EntidadId">
+            <summary>Opcional: ID exacto del registro afectado o visitado.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.EventoTelemetria.Metadata">
+            <summary>Carga útil (Payload) en formato JSON estructurado con variables de entorno de la acción.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.EventoTelemetria.RegistradoEn">
+            <summary>Sello de tiempo absoluto de la interacción.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.EventoTelemetria.Usuario">
+            <summary>Referencia física hacia el usuario emisor.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.EventoTelemetria.Sesion">
+            <summary>Referencia física hacia la sesión capturada.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Analitica.EventoTelemetria.#ctor">
+            <summary>Constructor vacío requerido por Entity Framework Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Analitica.EventoTelemetria.#ctor(System.Guid,System.Nullable{System.Guid},System.String,System.String,System.Nullable{System.Guid},System.String)">
+            <summary>
+            Construye un registro inmutable de telemetría. 
+            El ID no se genera aquí; Postgres lo asignará mediante BIGSERIAL.
+            </summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Analitica.MetricaAgregada">
+            <summary>
+            Representa un valor estadístico precalculado (KPI) para lectura ultrarrápida en Dashboards.
+            Evita recálculos costosos sobre grandes volúmenes de datos.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.MetricaAgregada.Id">
+            <summary>Identificador único del registro de la métrica.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.MetricaAgregada.InstitucionId">
+            <summary>ID de la institución a la que pertenece esta métrica general.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.MetricaAgregada.PeriodoId">
+            <summary>Opcional: ID del periodo académico si la métrica es temporal (Ej. Tasa de deserción 2026-1).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.MetricaAgregada.TipoMetrica">
+            <summary>Nombre clave o llave identificadora del KPI (Ej. TASA_DESERCION_GLOBAL, ALUMNOS_RIESGO_ALTO).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.MetricaAgregada.Valor">
+            <summary>Valor numérico calculado (Permite hasta 4 decimales de precisión).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.MetricaAgregada.CalculadoEn">
+            <summary>Sello de tiempo indicando el momento exacto en que el worker realizó el cálculo.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.MetricaAgregada.Institucion">
+            <summary>Referencia hacia la institución propietaria de los datos.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.MetricaAgregada.Periodo">
+            <summary>Referencia hacia el periodo de la evaluación (si aplica).</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Analitica.MetricaAgregada.#ctor">
+            <summary>Constructor vacío requerido por Entity Framework Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Analitica.MetricaAgregada.#ctor(System.Guid,System.Nullable{System.Guid},System.String,System.Decimal)">
+            <summary>
+            Construye una nueva métrica precalculada asegurando la estandarización de la llave.
+            </summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Analitica.PrediccionRiesgo">
+            <summary>
+            Representa el resultado del motor de Inteligencia Artificial sobre el riesgo de deserción de un estudiante en un periodo.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.PrediccionRiesgo.Id">
+            <summary>Identificador único del registro de predicción.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.PrediccionRiesgo.InscripcionId">
+            <summary>ID de la inscripción evaluada.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.PrediccionRiesgo.ScoreRiesgo">
+            <summary>Puntuación matemática pura del algoritmo (Valor de 0.0000 a 1.0000).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.PrediccionRiesgo.NivelRiesgo">
+            <summary>Clasificación categórica del riesgo (Ej. BAJO, MEDIO, ALTO, CRITICO).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.PrediccionRiesgo.Factores">
+            <summary>Explicabilidad del modelo: JSON con los pesos o motivos que llevaron a este score.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.PrediccionRiesgo.VersionModelo">
+            <summary>Firma de la versión del algoritmo utilizado (Ej. "XGBoost-v2.1").</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.PrediccionRiesgo.GeneradoEn">
+            <summary>Sello de tiempo en el que el motor generó este cálculo.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.PrediccionRiesgo.VigenteHasta">
+            <summary>Fecha de caducidad de esta predicción, requiriendo un nuevo cálculo posterior a ella.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Analitica.PrediccionRiesgo.Inscripcion">
+            <summary>Referencia hacia la inscripción académica base.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Analitica.PrediccionRiesgo.#ctor">
+            <summary>Constructor vacío requerido por Entity Framework Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Analitica.PrediccionRiesgo.#ctor(System.Guid,System.Decimal,System.String,System.String,System.String,System.DateTimeOffset)">
+            <summary>
+            Construye y blinda matemáticamente el resultado predictivo.
+            </summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Auditoria.LogAccion">
+            <summary>
+            Representa un registro inmutable en la bitácora del sistema (Ledger).
+            Captura quién hizo qué, cuándo, y cómo cambiaron los datos.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auditoria.LogAccion.Id">
+            <summary>Identificador secuencial del registro (BIGSERIAL).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auditoria.LogAccion.UsuarioId">
+            <summary>ID del usuario que ejecutó la acción (null si fue el sistema).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auditoria.LogAccion.RolActivo">
+            <summary>Rol bajo el cual operaba el usuario al momento de la acción.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auditoria.LogAccion.Accion">
+            <summary>Nombre técnico de la acción ejecutada (Ej. ACTUALIZAR_NOTA, CREAR_USUARIO).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auditoria.LogAccion.EntidadTipo">
+            <summary>Tabla o módulo afectado (Ej. HistorialNota, PerfilMentor).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auditoria.LogAccion.EntidadId">
+            <summary>Llave primaria del registro afectado (en formato texto para soportar UUID o Int).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auditoria.LogAccion.DatosAntes">
+            <summary>Estado de los datos ANTES de la modificación (JSON).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auditoria.LogAccion.DatosDespues">
+            <summary>Estado de los datos DESPUÉS de la modificación (JSON).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auditoria.LogAccion.IpOrigen">
+            <summary>Dirección IP desde la que se originó la petición.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auditoria.LogAccion.UserAgent">
+            <summary>Navegador web o cliente que realizó la petición.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auditoria.LogAccion.Resultado">
+            <summary>Resultado de la operación (EXITOSO, FALLIDO, DENEGADO).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auditoria.LogAccion.DetalleError">
+            <summary>Stack trace o mensaje técnico si la operación falló.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auditoria.LogAccion.EjecutadoEn">
+            <summary>Sello de tiempo absoluto e inmutable de la ejecución.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auditoria.LogAccion.Usuario">
+            <summary>Referencia de navegación opcional hacia el usuario responsable.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Auditoria.LogAccion.#ctor">
+            <summary>Constructor vacío requerido por Entity Framework Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Auditoria.LogAccion.#ctor(System.Nullable{System.Guid},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Construye una entrada de bitácora garantizando que los datos mínimos de rastreo existan.
+            </summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Auth.Rol">
+            <summary>
+            Define los roles de acceso dentro de la plataforma (ej. Administrador, Mentor, Estudiante).
+            Mapea a la tabla auth.roles.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Rol.Id">
+            <summary>Identificador único del rol.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Rol.Nombre">
+            <summary>Nombre único y normalizado del rol.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Rol.Descripcion">
+            <summary>Descripción detallada de los permisos que otorga.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Rol.Activo">
+            <summary>Indica si el rol puede ser asignado actualmente.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Rol.CreadoEn">
+            <summary>Fecha de creación del registro del rol.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Auth.Rol.#ctor">
+            <summary>
+            Constructor protegido requerido por Entity Framework Core.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Auth.Rol.#ctor(System.String,System.String)">
+            <summary>
+            Crea una nueva instancia de un Rol con sus datos iniciales.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Auth.Rol.Desactivar">
+            <summary>
+            Inhabilita el rol, previniendo futuras asignaciones sin eliminar el histórico.
+            </summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Auth.Sesion">
+            <summary>
+            Representa una sesión activa de un usuario en el sistema.
+            Permite gestionar auditorías y cierres de sesión forzados (Single Sign-Out).
+            Mapea a la tabla auth.sesiones.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Sesion.Id">
+            <summary>Identificador interno único de la sesión.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Sesion.UsuarioId">
+            <summary>ID del usuario propietario de la sesión.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Sesion.KeycloakSid">
+            <summary>ID de sesión generado por Keycloak, vital para el logout unificado.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Sesion.IpOrigen">
+            <summary>Dirección IP desde la que se originó la conexión.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Sesion.UserAgent">
+            <summary>Información sobre el navegador o dispositivo utilizado.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Sesion.IniciadaEn">
+            <summary>Fecha y hora exacta en la que se generó el token inicial.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Sesion.ExpiradaEn">
+            <summary>Fecha y hora en la que la sesión fue revocada o expiró naturalmente.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Sesion.Activa">
+            <summary>Bandera para determinar si el token sigue siendo válido operativamente.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Sesion.Usuario">
+            <summary>Propiedad de navegación hacia la entidad Usuario.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Auth.Sesion.#ctor">
+            <summary>
+            Constructor requerido por EF Core.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Auth.Sesion.#ctor(System.Guid,System.String,System.String,System.String)">
+            <summary>
+            Registra el inicio de una nueva sesión de acceso al ecosistema.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Auth.Sesion.Finalizar">
+            <summary>
+            Invalida explícitamente la sesión, cortando el acceso del usuario.
+            </summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Auth.Usuario">
+            <summary>
+            Entidad principal del ecosistema (Estudiante, Docente, Mentor, Admin).
+            Mapea a la tabla auth.usuarios.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Usuario.Id">
+            <summary>Llave primaria local del sistema.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Usuario.KeycloakId">
+            <summary>Identificador único proveniente del servidor de identidad (Keycloak).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Usuario.Email">
+            <summary>Correo electrónico único del usuario.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Usuario.Nombre">
+            <summary>Nombre de pila del usuario.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Usuario.Apellido">
+            <summary>Apellido o apellidos del usuario.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Usuario.Telefono">
+            <summary>Número de teléfono de contacto (opcional).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Usuario.AvatarUrl">
+            <summary>URL de la imagen de perfil (opcional).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Usuario.ZonaHoraria">
+            <summary>Zona horaria por defecto asumiendo el contexto de Bolivia.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Usuario.Idioma">
+            <summary>Idioma de preferencia en la interfaz de la plataforma.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Usuario.Activo">
+            <summary>Indica si el usuario tiene permiso para acceder al sistema local.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Usuario.UltimoAccesoEn">
+            <summary>Fecha y hora del último inicio de sesión exitoso.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Usuario.CreadoEn">
+            <summary>Fecha de registro original en el sistema.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.Usuario.ActualizadoEn">
+            <summary>Fecha de la última modificación de sus datos de perfil.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Auth.Usuario.#ctor">
+            <summary>
+            Constructor vacío requerido estrictamente por Entity Framework Core.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Auth.Usuario.#ctor(System.Guid,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Constructor de Dominio. 
+            Exige los 8 argumentos necesarios para garantizar que un usuario nazca en un estado válido.
+            </summary>
+            <param name="keycloakId">ID del proveedor de identidad.</param>
+            <param name="email">Correo electrónico.</param>
+            <param name="nombre">Nombre.</param>
+            <param name="apellido">Apellido.</param>
+            <param name="telefono">Teléfono.</param>
+            <param name="avatarUrl">Avatar.</param>
+            <param name="zonaHoraria">Zona Horaria.</param>
+            <param name="idioma">Idioma.</param>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Auth.Usuario.RegistrarAcceso">
+            <summary>
+            Actualiza el sello de tiempo indicando actividad reciente en la plataforma.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Auth.Usuario.DesactivarCuenta">
+            <summary>
+            Bloquea el acceso local del usuario al sistema.
+            </summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Auth.UsuarioRol">
+            <summary>
+            Relación N:M entre Usuarios y Roles, con soporte para tenencia por institución académica.
+            Mapea a la tabla auth.usuario_roles.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.UsuarioRol.Id">
+            <summary>Identificador principal de la asignación.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.UsuarioRol.UsuarioId">
+            <summary>Identificador del usuario que recibe el rol.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.UsuarioRol.RolId">
+            <summary>Identificador del rol otorgado.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.UsuarioRol.InstitucionId">
+            <summary>Referencia a la institución, permite roles aislados por sede universitaria.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.UsuarioRol.AsignadoEn">
+            <summary>Momento exacto en que se otorgó el privilegio.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.UsuarioRol.AsignadoPorId">
+            <summary>Usuario administrador que autorizó la asignación, para trazabilidad.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.UsuarioRol.Usuario">
+            <summary>Referencia en memoria hacia la entidad Usuario.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Auth.UsuarioRol.Rol">
+            <summary>Referencia en memoria hacia la entidad Rol.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Auth.UsuarioRol.#ctor">
+            <summary>
+            Constructor vacío requerido por ORMs para hidratación de datos.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Auth.UsuarioRol.#ctor(System.Guid,System.Guid,System.Nullable{System.Guid},System.Nullable{System.Guid})">
+            <summary>
+            Genera un vínculo seguro entre un usuario, un rol y opcionalmente su institución.
+            </summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Comunicacion.Conversacion">
+            <summary>
+            Representa un canal de chat único e irrepetible entre dos usuarios.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Conversacion.Id">
+            <summary>Identificador único de la conversación.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Conversacion.ParticipanteA">
+            <summary>ID del primer participante (ordenado alfanuméricamente).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Conversacion.ParticipanteB">
+            <summary>ID del segundo participante (ordenado alfanuméricamente).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Conversacion.CreadoEn">
+            <summary>Fecha y hora en que se inició la conversación.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Conversacion.UsuarioA">
+            <summary>Referencia de navegación hacia el primer participante.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Conversacion.UsuarioB">
+            <summary>Referencia de navegación hacia el segundo participante.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Comunicacion.Conversacion.#ctor">
+            <summary>Constructor vacío requerido por Entity Framework Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Comunicacion.Conversacion.#ctor(System.Guid,System.Guid)">
+            <summary>
+            Crea un canal de comunicación aplicando normalización de IDs para evitar duplicados bidireccionales.
+            </summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Comunicacion.Mensaje">
+            <summary>
+            Representa un texto individual enviado dentro de una Conversación.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Mensaje.Id">
+            <summary>Identificador único del mensaje.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Mensaje.ConversacionId">
+            <summary>ID de la conversación a la que pertenece este mensaje.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Mensaje.RemitenteId">
+            <summary>ID del usuario que envió el mensaje.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Mensaje.Contenido">
+            <summary>Contenido de texto del mensaje.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Mensaje.Leido">
+            <summary>Indica si el mensaje ha sido leído por el destinatario.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Mensaje.EnviadoEn">
+            <summary>Fecha y hora exacta del envío.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Mensaje.LeidoEn">
+            <summary>Fecha y hora en que el mensaje fue marcado como leído.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Mensaje.Conversacion">
+            <summary>Referencia hacia el canal de chat.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Mensaje.Remitente">
+            <summary>Referencia hacia el usuario emisor.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Comunicacion.Mensaje.#ctor">
+            <summary>Constructor vacío requerido por Entity Framework Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Comunicacion.Mensaje.#ctor(System.Guid,System.Guid,System.String)">
+            <summary>
+            Construye un nuevo mensaje validando que no esté vacío.
+            </summary>
+            <param name="conversacionId">ID de la conversación destino.</param>
+            <param name="remitenteId">ID del usuario que emite el texto.</param>
+            <param name="contenido">El texto del mensaje.</param>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Comunicacion.Mensaje.MarcarComoLeido">
+            <summary>Marca el mensaje como leído (Double Blue Tick) registrando el momento exacto.</summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Comunicacion.Notificacion">
+            <summary>
+            Representa una alerta o mensaje de sistema dirigido a un usuario específico.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Notificacion.Id">
+            <summary>Identificador único de la notificación.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Notificacion.DestinatarioId">
+            <summary>ID del usuario al que va dirigida la alerta.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Notificacion.Tipo">
+            <summary>Clasificación de la alerta (Ej. SISTEMA, MENTORIA, RIESGO).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Notificacion.Titulo">
+            <summary>Título corto y descriptivo.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Notificacion.Cuerpo">
+            <summary>Contenido detallado del mensaje.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Notificacion.Leida">
+            <summary>Indica si el usuario ya visualizó la alerta.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Notificacion.DatosExtra">
+            <summary>Datos adicionales serializados en JSON para redirecciones en el Frontend.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Notificacion.CreadoEn">
+            <summary>Fecha y hora de emisión.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Notificacion.LeidaEn">
+            <summary>Fecha y hora en la que el usuario marcó la notificación como leída.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Comunicacion.Notificacion.Destinatario">
+            <summary>Referencia al usuario destinatario.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Comunicacion.Notificacion.#ctor">
+            <summary>Constructor vacío para EF Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Comunicacion.Notificacion.#ctor(System.Guid,System.String,System.String,System.String,System.String)">
+            <summary>
+            Construye una nueva alerta del sistema en estado no leída.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Comunicacion.Notificacion.MarcarComoLeida">
+            <summary>
+            Cambia el estado de la notificación a leída y registra la marca de tiempo.
+            </summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Mentoria.ActaSesion">
+            <summary>
+            Representa el registro oficial o bitácora de una sesión de mentoría finalizada.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.ActaSesion.Id">
+            <summary>Identificador único del acta.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.ActaSesion.CitaId">
+            <summary>ID de la cita a la que pertenece esta acta (Relación estricta 1:1).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.ActaSesion.TemasTratados">
+            <summary>Resumen detallado de los temas abordados durante la sesión.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.ActaSesion.Compromisos">
+            <summary>Tareas o compromisos acordados por el estudiante (opcional).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.ActaSesion.Observaciones">
+            <summary>Notas privadas u observaciones del mentor (opcional).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.ActaSesion.NivelRiesgoPercibido">
+            <summary>Evaluación subjetiva del mentor sobre el riesgo de deserción del estudiante.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.ActaSesion.CreadoEn">
+            <summary>Fecha y hora en la que se registró el acta.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.ActaSesion.Cita">
+            <summary>Referencia a la cita original que originó esta acta.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Mentoria.ActaSesion.#ctor">
+            <summary>Constructor vacío requerido por Entity Framework Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Mentoria.ActaSesion.#ctor(System.Guid,System.String,System.String,System.String,System.String)">
+            <summary>
+            Construye una nueva acta validando que la información vital esté presente.
+            </summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Mentoria.Cita">
+            <summary>
+            Representa una reserva o sesión programada entre un estudiante y un mentor.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.Id">
+            <summary>Identificador único de la cita.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.MentorId">
+            <summary>ID del perfil del mentor que impartirá la sesión.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.EstudianteId">
+            <summary>ID del usuario (estudiante) que reserva la sesión.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.InscripcionId">
+            <summary>Opcional: ID de la inscripción académica si la cita es específica para una materia/carrera.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.FechaHoraIni">
+            <summary>Fecha y hora de inicio de la sesión.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.FechaHoraFin">
+            <summary>Fecha y hora de finalización de la sesión.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.Modalidad">
+            <summary>Modalidad de la reunión (ej. VIRTUAL, PRESENCIAL).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.EnlaceVirtual">
+            <summary>URL para la reunión en caso de ser virtual (Zoom, Meet, Teams).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.Estado">
+            <summary>Estado de la reserva (PENDIENTE, CONFIRMADA, REALIZADA, CANCELADA).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.CanceladoPor">
+            <summary>ID del usuario que canceló la cita, si aplica.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.MotivoCancel">
+            <summary>Razón por la cual se canceló la sesión.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.CreadoEn">
+            <summary>Sello de tiempo de la creación de la reserva.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.Mentor">
+            <summary>Referencia al perfil del mentor asignado a la cita.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.Estudiante">
+            <summary>Referencia al estudiante que solicitó la cita.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.Inscripcion">
+            <summary>Referencia a la inscripción académica (si aplica).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Cita.Cancelador">
+            <summary>Referencia al usuario que canceló la cita (si fue cancelada).</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Mentoria.Cita.#ctor">
+            <summary>Constructor requerido por EF Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Mentoria.Cita.#ctor(System.Guid,System.Guid,System.Nullable{System.Guid},System.DateTimeOffset,System.DateTimeOffset,System.String,System.String)">
+            <summary>
+            Construye una nueva cita aplicando las validaciones de tiempo inquebrantables.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Mentoria.Cita.Cancelar(System.Guid,System.String)">
+            <summary>
+            Cambia el estado de la cita a CANCELADA y registra la justificación.
+            </summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Mentoria.Disponibilidad">
+            <summary>
+            Representa un bloque de horario recurrente en el que un mentor ofrece asesoría.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Disponibilidad.Id">
+            <summary>Identificador único del bloque de disponibilidad.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Disponibilidad.MentorId">
+            <summary>ID del perfil del mentor dueño de este horario.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Disponibilidad.DiaSemana">
+            <summary>Día de la semana (0 = Domingo, 1 = Lunes, ..., 6 = Sábado).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Disponibilidad.HoraInicio">
+            <summary>Hora exacta de inicio del bloque.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Disponibilidad.HoraFin">
+            <summary>Hora exacta de finalización del bloque.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Disponibilidad.Modalidad">
+            <summary>Modalidad de la sesión (ej. VIRTUAL, PRESENCIAL).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Disponibilidad.Activa">
+            <summary>Indica si este bloque de horario está actualmente activo para reservas.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.Disponibilidad.Mentor">
+            <summary>Referencia hacia el perfil del mentor.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Mentoria.Disponibilidad.#ctor">
+            <summary>Constructor requerido por Entity Framework Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Mentoria.Disponibilidad.#ctor(System.Guid,System.Int16,System.TimeOnly,System.TimeOnly,System.String)">
+            <summary>
+            Construye un bloque de disponibilidad validando la coherencia del tiempo.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Mentoria.Disponibilidad.Desactivar">
+            <summary>Desactiva este bloque horario para evitar nuevas reservas.</summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Entities.Mentoria.PerfilMentor">
+            <summary>
+            Representa la extensión del perfil de un usuario que lo habilita para impartir mentorías.
+            </summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.PerfilMentor.Id">
+            <summary>Identificador único del perfil de mentor.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.PerfilMentor.UsuarioId">
+            <summary>ID del usuario base asociado a este perfil (Relación 1:1).</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.PerfilMentor.Biografia">
+            <summary>Biografía, experiencia o presentación profesional del mentor.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.PerfilMentor.Especialidades">
+            <summary>Lista de materias, tecnologías o áreas en las que el mentor es experto.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.PerfilMentor.MaxEstudiantes">
+            <summary>Límite máximo de estudiantes concurrentes que el mentor acepta asesorar.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.PerfilMentor.Activo">
+            <summary>Indica si el mentor está actualmente activo y visible para los estudiantes.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.PerfilMentor.CreadoEn">
+            <summary>Fecha de alta como mentor.</summary>
+        </member>
+        <member name="P:SUMAPT.Domain.Entities.Mentoria.PerfilMentor.Usuario">
+            <summary>Referencia hacia los datos de identidad del usuario.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Mentoria.PerfilMentor.#ctor">
+            <summary>Constructor vacío requerido por Entity Framework Core.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Mentoria.PerfilMentor.#ctor(System.Guid,System.String,System.Collections.Generic.List{System.String},System.Int16)">
+            <summary>
+            Construye y valida un nuevo perfil de mentor.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Mentoria.PerfilMentor.PausarDisponibilidad">
+            <summary>Pausa temporalmente la visibilidad del mentor.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Entities.Mentoria.PerfilMentor.ActivarDisponibilidad">
+            <summary>Reactiva la visibilidad del mentor.</summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Interfaces.Repositories.Auth.IUsuarioRepository">
+            <summary>
+            Contrato específico para la entidad Usuario.
+            Extiende el repositorio genérico con búsquedas exclusivas de seguridad.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Interfaces.Repositories.Auth.IUsuarioRepository.GetByEmailAsync(System.String)">
+            <summary>Busca un usuario por su correo electrónico único.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Interfaces.Repositories.Auth.IUsuarioRepository.GetByKeycloakIdAsync(System.Guid)">
+            <summary>Busca un usuario utilizando el ID emitido por Keycloak.</summary>
+        </member>
+        <member name="T:SUMAPT.Domain.Interfaces.Repositories.IRepository`1">
+            <summary>
+            Contrato genérico para el acceso a datos.
+            Define las operaciones estándar para cualquier entidad del sistema.
+            </summary>
+            <typeparam name="T">Clase de entidad (ej. Usuario, Cita, Programa).</typeparam>
+        </member>
+        <member name="M:SUMAPT.Domain.Interfaces.Repositories.IRepository`1.GetByIdAsync(System.Object)">
+            <summary>Busca una entidad por su identificador único (UUID o BIGSERIAL).</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Interfaces.Repositories.IRepository`1.GetAllAsync">
+            <summary>Devuelve todos los registros de la tabla.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Interfaces.Repositories.IRepository`1.FindAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>Busca registros que cumplan con una condición específica.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Interfaces.Repositories.IRepository`1.AddAsync(`0)">
+            <summary>Prepara una entidad para ser insertada.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Interfaces.Repositories.IRepository`1.Update(`0)">
+            <summary>Marca una entidad como modificada.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Interfaces.Repositories.IRepository`1.Delete(`0)">
+            <summary>Marca una entidad para eliminación física.</summary>
+        </member>
+        <member name="M:SUMAPT.Domain.Interfaces.Repositories.IRepository`1.SaveChangesAsync">
+            <summary>Ejecuta la transacción SQL en la base de datos.</summary>
+        </member>
+    </members>
+</doc>

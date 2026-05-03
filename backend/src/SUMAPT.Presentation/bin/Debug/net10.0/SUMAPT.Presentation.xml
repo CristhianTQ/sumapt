@@ -1,0 +1,335 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SUMAPT.Presentation</name>
+    </assembly>
+    <members>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Academico.HistorialNotaController">
+            <summary>
+            Controlador responsable del registro y modificación de calificaciones (Kardex).
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Academico.HistorialNotaController.#ctor(MediatR.ISender)">
+            <summary>
+            Inicializa una nueva instancia del controlador inyectando el orquestador CQRS.
+            </summary>
+            <param name="mediator">Instancia de MediatR para procesar los comandos de notas.</param>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Academico.HistorialNotaController.Registrar(SUMAPT.Application.Academico.Commands.RegistrarNota.RegistrarNotaCommand)">
+            <summary>
+            Registra el ingreso de una calificación a la malla curricular del estudiante.
+            </summary>
+            <param name="command">Datos de la nota y sus IDs foráneos.</param>
+            <returns>ID único del registro en el historial.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Academico.InscripcionController">
+            <summary>
+            Controlador principal para gestionar la matrícula de estudiantes.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Academico.InscripcionController.#ctor(MediatR.ISender)">
+            <summary>Inicializa el controlador inyectando el orquestador CQRS.</summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Academico.InscripcionController.Matricular(SUMAPT.Application.Academico.Commands.CrearInscripcion.CrearInscripcionCommand)">
+            <summary>
+            Matricula a un estudiante en un programa de estudios durante un periodo específico.
+            </summary>
+            <param name="command">IDs de estudiante, programa y periodo.</param>
+            <returns>El ID único de la inscripción generada.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Academico.InstitucionController">
+            <summary>
+            Controlador para la gestión del Multi-Tenant educativo.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Academico.InstitucionController.#ctor(MediatR.ISender)">
+            <summary>
+            Inicializa una nueva instancia del controlador inyectando el orquestador CQRS.
+            </summary>
+            <param name="mediator">Instancia del despachador de comandos.</param>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Academico.InstitucionController.Crear(SUMAPT.Application.Academico.Commands.CrearInstitucion.CrearInstitucionCommand)">
+            <summary>
+            Registra una nueva Institución Educativa en la plataforma.
+            </summary>
+            <param name="command">Datos de la institución.</param>
+            <returns>ID único generado.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Academico.MateriaController">
+            <summary>
+            Controlador para la administración del pensum y la malla curricular.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Academico.MateriaController.#ctor(MediatR.ISender)">
+            <summary>Inicializa el controlador inyectando el orquestador CQRS.</summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Academico.MateriaController.Crear(SUMAPT.Application.Academico.Commands.CrearMateria.CrearMateriaCommand)">
+            <summary>
+            Añade una nueva Materia (Asignatura) a un Programa Académico.
+            </summary>
+            <param name="command">Estructura con dependencias del programa y detalles de la materia.</param>
+            <returns>ID único generado para la materia.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Academico.ModeloAcademicoController">
+            <summary>
+            Controlador para la gestión de las plantillas y modelos académicos (Semestral, Modular, etc.).
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Academico.ModeloAcademicoController.#ctor(MediatR.ISender)">
+            <summary>
+            Inicializa una nueva instancia del controlador inyectando el orquestador.
+            </summary>
+            <param name="mediator">Instancia de MediatR para el envío de comandos.</param>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Academico.ModeloAcademicoController.Crear(SUMAPT.Application.Academico.Commands.CrearModeloAcademico.CrearModeloAcademicoCommand)">
+            <summary>
+            Crea un nuevo Modelo Académico vinculado a una Institución.
+            </summary>
+            <param name="command">Estructura con el ID de la institución, nombre y configuración anual.</param>
+            <returns>ID único generado para el modelo.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Academico.PeriodoController">
+            <summary>
+            Controlador para la gestión de ciclos y periodos académicos.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Academico.PeriodoController.#ctor(MediatR.ISender)">
+            <summary>Inyección de dependencias del orquestador.</summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Academico.PeriodoController.Crear(SUMAPT.Application.Academico.Commands.CrearPeriodo.CrearPeriodoCommand)">
+            <summary>
+            Crea un nuevo Periodo Académico vinculado a una Institución.
+            </summary>
+            <param name="command">Estructura con el ID de la institución, nombre y fechas.</param>
+            <returns>ID único generado para el periodo.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Academico.ProgramaController">
+            <summary>
+            Controlador para la gestión de las carreras o programas de estudio.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Academico.ProgramaController.#ctor(MediatR.ISender)">
+            <summary>Inicializa el controlador inyectando el orquestador MediatR.</summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Academico.ProgramaController.Crear(SUMAPT.Application.Academico.Commands.CrearPrograma.CrearProgramaCommand)">
+            <summary>
+            Crea un nuevo Programa Académico (Carrera).
+            </summary>
+            <param name="command">Estructura con dependencias (Institución, Modelo) y detalles de la carrera.</param>
+            <returns>ID único generado para el programa.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Analitica.MetricaAgregadaController">
+            <summary>
+            Controlador destinado a la inyección de KPIs y variables estadísticas globales.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Analitica.MetricaAgregadaController.#ctor(MediatR.ISender)">
+            <summary>Inicializa el orquestador de despachos CQRS.</summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Analitica.MetricaAgregadaController.Registrar(SUMAPT.Application.Analitica.Commands.RegistrarMetrica.RegistrarMetricaCommand)">
+            <summary>
+            Guarda un valor estadístico precalculado para su rápida visualización en Dashboards.
+            </summary>
+            <param name="command">Datos de la métrica (Institución, Periodo, Tipo, Valor).</param>
+            <returns>El ID único del KPI registrado.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Analitica.PrediccionRiesgoController">
+            <summary>
+            Controlador destinado al servicio de Inteligencia Artificial para volcar sus inferencias.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Analitica.PrediccionRiesgoController.#ctor(MediatR.ISender)">
+            <summary>Inicializa el orquestador de comandos.</summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Analitica.PrediccionRiesgoController.Registrar(SUMAPT.Application.Analitica.Commands.RegistrarPrediccion.RegistrarPrediccionCommand)">
+            <summary>
+            Guarda el resultado del motor predictivo para un estudiante.
+            </summary>
+            <param name="command">Cálculo de riesgo, versión del algoritmo y explicabilidad.</param>
+            <returns>ID único generado para el registro predictivo.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Analitica.TelemetriaController">
+            <summary>
+            Controlador diseñado para la ingesta masiva de interacciones del usuario (Data Pipeline).
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Analitica.TelemetriaController.#ctor(MediatR.ISender)">
+            <summary>Inicializa el orquestador de comandos.</summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Analitica.TelemetriaController.Registrar(SUMAPT.Application.Analitica.Commands.RegistrarEvento.RegistrarEventoCommand)">
+            <summary>
+            Ingiere un evento atómico desde el frontend para ser procesado por los modelos analíticos.
+            </summary>
+            <param name="command">Carga útil del evento estructurado.</param>
+            <returns>El ID (long) secuencial asignado en base de datos.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Auditoria.LogAccionController">
+            <summary>
+            Controlador destinado a la ingesta de registros inmutables de auditoría.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Auditoria.LogAccionController.#ctor(MediatR.ISender)">
+            <summary>Inicializa el orquestador CQRS.</summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Auditoria.LogAccionController.Registrar(SUMAPT.Application.Auditoria.Commands.RegistrarLogAccion.RegistrarLogAccionCommand)">
+            <summary>
+            Registra un nuevo evento inmutable en el libro mayor del sistema.
+            </summary>
+            <param name="command">Datos estructurados de la acción y la entidad afectada.</param>
+            <returns>ID secuencial generado en base de datos.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Auth.AuthController">
+            <summary>
+            Controlador principal para la gestión de identidad y accesos.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Auth.AuthController.#ctor(MediatR.ISender)">
+            <summary>
+            Inyectamos el orquestador MediatR. El controlador no sabe nada de repositorios ni base de datos.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Auth.AuthController.Sincronizar(SUMAPT.Application.Auth.Commands.SincronizarUsuarioKeycloak.SincronizarUsuarioKeycloakCommand)">
+            <summary>
+            Sincroniza un usuario proveniente de Keycloak con la base de datos local.
+            </summary>
+            <param name="command">Datos del usuario a sincronizar.</param>
+            <returns>El ID (UUID) local del usuario generado en la base de datos.</returns>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Auth.AuthController.GetByKeycloakId(System.Guid)">
+            <summary>
+            Obtiene el perfil público de un usuario utilizando su ID de Keycloak.
+            </summary>
+            <param name="keycloakId">El UUID emitido por el proveedor de identidad.</param>
+            <returns>El DTO con los datos del usuario o 404 si no existe.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Comunicacion.ConversacionController">
+            <summary>
+            Controlador para la gestión de chats privados y mensajería directa.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Comunicacion.ConversacionController.#ctor(MediatR.ISender)">
+            <summary>
+            Inicializa una nueva instancia del controlador inyectando el orquestador CQRS.
+            </summary>
+            <param name="mediator">Instancia de MediatR para despachar los comandos.</param>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Comunicacion.ConversacionController.Iniciar(SUMAPT.Application.Comunicacion.Commands.IniciarConversacion.IniciarConversacionCommand)">
+            <summary>
+            Inicia un nuevo chat entre dos usuarios o devuelve el ID del chat si ya existe.
+            </summary>
+            <param name="command">IDs del usuario que inicia y el receptor.</param>
+            <returns>ID único de la conversación (nueva o existente).</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Comunicacion.MensajeController">
+            <summary>
+            Controlador responsable de la ingesta de mensajes de chat.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Comunicacion.MensajeController.#ctor(MediatR.ISender)">
+            <summary>Inicializa el orquestador CQRS.</summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Comunicacion.MensajeController.Enviar(SUMAPT.Application.Comunicacion.Commands.EnviarMensaje.EnviarMensajeCommand)">
+            <summary>
+            Envía un nuevo mensaje de texto a una conversación existente.
+            </summary>
+            <param name="command">Datos de ruteo y contenido del mensaje.</param>
+            <returns>El ID único del mensaje insertado.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Comunicacion.NotificacionController">
+            <summary>
+            Controlador para la gestión y emisión de alertas del sistema.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Comunicacion.NotificacionController.#ctor(MediatR.ISender)">
+            <summary>
+            Inicializa el controlador inyectando el orquestador MediatR.
+            </summary>
+            <param name="mediator">Instancia del despachador de comandos.</param>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Comunicacion.NotificacionController.Enviar(SUMAPT.Application.Comunicacion.Commands.CrearNotificacion.CrearNotificacionCommand)">
+            <summary>
+            Emite una nueva notificación a un usuario específico.
+            </summary>
+            <param name="command">Estructura del mensaje y destinatario.</param>
+            <returns>El ID único de la notificación generada.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Mentoria.ActaSesionController">
+            <summary>
+            Controlador para la gestión de las bitácoras y resultados de las sesiones de mentoría.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Mentoria.ActaSesionController.#ctor(MediatR.ISender)">
+            <summary>Inicializa el controlador inyectando MediatR.</summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Mentoria.ActaSesionController.Registrar(SUMAPT.Application.Mentoria.Commands.RegistrarActaSesion.RegistrarActaSesionCommand)">
+            <summary>
+            Registra el acta final de una sesión de mentoría.
+            </summary>
+            <param name="command">Estructura con el detalle de la sesión y percepciones del mentor.</param>
+            <returns>El ID único del acta generada.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Mentoria.CitaController">
+            <summary>
+            Controlador principal para la gestión de reservas de mentoría y citas académicas.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Mentoria.CitaController.#ctor(MediatR.ISender)">
+            <summary>Inicializa el orquestador CQRS.</summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Mentoria.CitaController.Reservar(SUMAPT.Application.Mentoria.Commands.ReservarCita.ReservarCitaCommand)">
+            <summary>
+            Registra una nueva reserva de mentoría para un estudiante.
+            </summary>
+            <param name="command">Datos de programación de la cita.</param>
+            <returns>El ID único de la reserva generada.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Mentoria.DisponibilidadController">
+            <summary>
+            Controlador para la gestión de horarios y agenda de los mentores.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Mentoria.DisponibilidadController.#ctor(MediatR.ISender)">
+            <summary>Inicializa inyectando MediatR.</summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Mentoria.DisponibilidadController.Definir(SUMAPT.Application.Mentoria.Commands.DefinirDisponibilidad.DefinirDisponibilidadCommand)">
+            <summary>
+            Añade un bloque de horario semanal a la agenda del mentor.
+            </summary>
+            <param name="command">Datos de tiempo y modalidad.</param>
+            <returns>ID único generado para el bloque de disponibilidad.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Controllers.v1.Mentoria.PerfilMentorController">
+            <summary>
+            Controlador responsable de gestionar la activación y perfiles de los mentores.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Mentoria.PerfilMentorController.#ctor(MediatR.ISender)">
+            <summary>Inicializa el controlador con el orquestador MediatR.</summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Controllers.v1.Mentoria.PerfilMentorController.Crear(SUMAPT.Application.Mentoria.Commands.CrearPerfilMentor.CrearPerfilMentorCommand)">
+            <summary>
+            Habilita a un usuario existente en la plataforma como Mentor.
+            </summary>
+            <param name="command">Estructura con el ID del usuario, su biografía y límite de capacidad.</param>
+            <returns>ID único generado para el perfil de mentor.</returns>
+        </member>
+        <member name="T:SUMAPT.Presentation.Filters.GlobalExceptionFilter">
+            <summary>
+            Intercepta cualquier excepción no manejada en el sistema y la formatea
+            como una respuesta JSON estándar (ProblemDetails), protegiendo la información sensible.
+            </summary>
+        </member>
+        <member name="M:SUMAPT.Presentation.Filters.GlobalExceptionFilter.OnException(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            Método disparado automáticamente por el framework cuando ocurre un error no capturado
+            durante el procesamiento de una petición HTTP.
+            </summary>
+            <param name="context">Contexto actual de la excepción y la petición.</param>
+        </member>
+        <member name="T:Program">
+            <summary>
+            Auto-generated public partial Program class for top-level statement apps.
+            </summary>
+        </member>
+    </members>
+</doc>

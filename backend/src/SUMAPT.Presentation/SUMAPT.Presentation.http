@@ -1,0 +1,6 @@
+@SUMAPT.Presentation_HostAddress = http://localhost:5246
+
+GET {{SUMAPT.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

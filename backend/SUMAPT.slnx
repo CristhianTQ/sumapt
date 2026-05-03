@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/SUMAPT.Application/SUMAPT.Application.csproj" />
+    <Project Path="src/SUMAPT.Domain/SUMAPT.Domain.csproj" />
+    <Project Path="src/SUMAPT.Infrastructure/SUMAPT.Infrastructure.csproj" />
+    <Project Path="src/SUMAPT.Presentation/SUMAPT.Presentation.csproj" />
+  </Folder>
+</Solution>
